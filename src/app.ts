@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import userRoute from "./routes/userRoute";
 import productRoute from "./routes/productRoute";
 import { seedInitialProducts } from './services/productService'
-
+import cardRoute from './routes/cartRoute'
 
 const app = express();
 
@@ -19,6 +19,7 @@ seedInitialProducts()
 
 app.use('/user', userRoute)
 app.use('/product', productRoute)
+app.use('/cart', cardRoute)
 
 
 export default app;
