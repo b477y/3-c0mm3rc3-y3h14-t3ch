@@ -5,6 +5,7 @@ import productRoute from "./routes/productRoute";
 import { seedInitialProducts } from './services/productService'
 import cardRoute from './routes/cartRoute'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 const app = express();
 
@@ -20,6 +21,7 @@ mongoose
 // Seed the products to database
 seedInitialProducts()
 
+app.use(cors())
 app.use('/user', userRoute)
 app.use('/product', productRoute)
 app.use('/cart', cardRoute)
