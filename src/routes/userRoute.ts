@@ -3,16 +3,25 @@ import { login, register } from "../services/userService";
 
 const router = Router()
 
-router.post('/register', async (request, response) => {
-    const { firstName, lastName, email, password } = request.body;
-    const { statusCode, data } = await register({ firstName, lastName, email, password }) // result
-    response.status(statusCode).send(data) // result.statusCode & result.data
+router.post('/register', async (req, res) => {
+    try {
+        const { firstName, lastName, email, password } = req.body;
+        const { statusCode, data } = await register({ firstName, lastName, email, password }) // result
+        res.status(statusCode).send(data) // result.statusCode & result.data
+
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
-router.post('/login', async (request, response) => {
-    const { email, password } = request.body
-    const { data, statusCode } = await login({ email, password })
-    response.status(statusCode).send(data)
+router.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body
+        const { data, statusCode } = await login({ email, password })
+        res.status(statusCode).send(data)
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 export default router;
