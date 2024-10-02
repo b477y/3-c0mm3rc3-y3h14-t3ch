@@ -2,7 +2,7 @@ import Router from 'express'
 import { getActiveCartForUser } from '../services/cartService'
 import validateJWT from '../middlewares/validateJWT'
 import { ExtendRequest } from "../types/extendedRequest"
-import { addItemToCart, updateItemInCart, deleteItemFromCart, clearCart } from "../services/cartService"
+import { addItemToCart, updateItemInCart, deleteItemFromCart, clearCart, checkout } from "../services/cartService"
 
 const router = Router()
 
@@ -43,6 +43,13 @@ router.delete('/items/:productId', validateJWT, async (req: ExtendRequest, res) 
     const { productId } = req.params;
     const response = await deleteItemFromCart({ productId, userId })
     const { data, statusCode } = response
+    res.status(statusCode).send(data)
+})
+
+router.post('/checkout', validateJWT, async (req: ExtendRequest, res) => {
+    const userId = req.user._id
+    const { address } = req.body
+    const { data, statusCode } = await checkout({ userId, address })
     res.status(statusCode).send(data)
 })
 
