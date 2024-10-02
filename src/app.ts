@@ -4,13 +4,16 @@ import userRoute from "./routes/userRoute";
 import productRoute from "./routes/productRoute";
 import { seedInitialProducts } from './services/productService'
 import cardRoute from './routes/cartRoute'
+import dotenv from 'dotenv'
 
 const app = express();
+
+dotenv.config()
 
 app.use(express.json())
 
 mongoose
-    .connect("mongodb://localhost:27018/ecommerce")
+    .connect(process.env.DATABASE_URL || "")
     .then(() => console.log("db connected"))
     .catch((err) => console.log("error occured while connecting to the database", err))
 
