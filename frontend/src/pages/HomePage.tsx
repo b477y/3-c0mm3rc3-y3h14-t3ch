@@ -3,7 +3,7 @@ import ProductCard from "../components/ProductCard";
 import Grid from "@mui/material/Grid";
 import BASE_URL from "../constants/baseUrl";
 import { useEffect, useState } from "react";
-import { Product } from "../types/product";
+import { Product } from "../types/Product";
 
 const HomePage = () => {
   const [products, setProducts] = useState<Product[]>([]);
