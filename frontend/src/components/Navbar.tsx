@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { useAuth } from "../context/Auth/AuthContext";
 import { Button, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -38,6 +39,10 @@ function Navbar() {
     logout();
     navigate("/");
     handleCloseUserMenu();
+  };
+
+  const handleCart = () => {
+    navigate("/cart");
   };
 
   return (
@@ -75,7 +80,16 @@ function Navbar() {
                 Batty Store
               </Typography>
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
+            <Box
+              display="flex"
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="center"
+              gap={4}
+            >
+              <IconButton onClick={handleCart}>
+                <ShoppingCart sx={{ color: "white" }} />
+              </IconButton>
               {isAuthenticated ? (
                 <>
                   <Tooltip title="Open settings">

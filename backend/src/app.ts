@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import userRoute from "./routes/userRoute";
 import productRoute from "./routes/productRoute";
 import { seedInitialProducts } from './services/productService'
-import cardRoute from './routes/cartRoute'
+import cartRoute from './routes/cartRoute'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -24,7 +24,7 @@ seedInitialProducts()
 app.use(cors())
 app.use('/user', userRoute)
 app.use('/product', productRoute)
-app.use('/cart', cardRoute)
+app.use('/cart', cartRoute)
 
 
 export default app;
